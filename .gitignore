@@ -7,6 +7,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# main python file
+main.py
+
 # User-specific files
 *.rsuser
 *.suo
@@ -390,6 +393,9 @@ FodyWeavers.xsd
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+# replit file
+.replit
 
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
