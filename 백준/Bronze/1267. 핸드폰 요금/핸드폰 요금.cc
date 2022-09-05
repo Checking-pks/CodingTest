@@ -16,8 +16,6 @@ int main() {
 		mPrice += (nowCallTime + 60) / 60 * 15;
 	}
 
-	string result = "";
-
 	if (yPrice < mPrice)
 		cout << "Y " << yPrice;
 	else if (yPrice == mPrice)
