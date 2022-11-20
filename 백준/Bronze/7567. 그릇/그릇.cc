@@ -1,18 +1,16 @@
 #include <iostream>
-#include <string>
 
 using namespace std;
 
 int main() {
-    int result = 0;
-    string dish;
-    char lastDish = ' ';
-    cin >> dish;
+    int r = 0;
+    string d, l = "";
+    cin >> d;
     
-    for (int i=0; i<dish.length(); i++) {
-        result += ((dish[i] == lastDish) ? 5 : 10);
-        lastDish = dish[i];
+    for (char n:d) {
+        r += ((n == l[0]) ? 5 : 10);
+        l = n;
     }
     
-    cout << result;
+    cout << r;
 }
