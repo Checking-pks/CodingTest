@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cmath>
 
 using namespace std;
 
@@ -7,11 +6,7 @@ int main() {
 	int n, m;
 	cin >> n >> m;
 
-	for (int i=0; i<n; i++) {
-		for (int j=0, x; j<m; j++) {
-			cin >> x;
-		}
-	}
+	for (int i=0, x; i<n*m; i++) cin >> x;
 
 	cout << (n < 8 ? "unsatisfactory" : "satisfactory");
 }
