@@ -1,15 +1,2 @@
 #include <iostream>
-
-using namespace std;
-
-int main() {
-	int result = 325;
-	string str;
-
-	cin >> str;
-
-	for (char c:str)
-		result -= c - 'A';
-
-	cout << char('A' + result);
-}
+int main(){int r=2015;std::string s;std::cin>>s;for(char c:s)r-=c;std::cout<<char(r);}
