@@ -1,34 +1,25 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
 int main() {
-	vector<int> number = {
-		2,2,2,
-		3,3,3,
-		4,4,4,
-		5,5,5,
-		6,6,6,
-		7,7,7,7,
-		8,8,8,
-		9,9,9,9};
-	
-	int testcase;
-	cin >> testcase;
+  string n = "22233344455566677778889999";
+  int tc;
+  cin >> tc;
 
-	for (int i=0; i<testcase; i++) {
-		bool isPalindromes = true;
-		string str;
-		cin >> str;
+  for (int i = 0; i < tc; i++) {
+    bool p = true;
+    string str;
+    cin >> str;
 
-		for (int j=0; j<=str.length()/2; j++) {
-			if (number[toupper(str[j])-'A'] != number[toupper(str[str.length() - 1 - j])-'A']) {
-				isPalindromes = false;
-				break;
-			}
-		}
+    for (int j = 0; j < str.length(); j++) {
+      if (n[toupper(str[j]) - 'A'] !=
+          n[toupper(str[str.length() - 1 - j]) - 'A']) {
+        p = false;
+        break;
+      }
+    }
 
-		cout << (isPalindromes ? "YES\n" : "NO\n");
-	}
+    cout << (p ? "YES\n" : "NO\n");
+  }
 }
