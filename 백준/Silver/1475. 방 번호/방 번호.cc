@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <cmath>
 
 using namespace std;
 
@@ -17,7 +16,7 @@ int main() {
 	}
 
 	for (int i=0; i<count.size(); i++) {
-		if (i == 6) result = max(result, int(ceil(count[i]/2.f)));
+		if (i == 6) result = max(result, count[i]/2 + count[i]%2);
 		else result = max(result, count[i]);
 	}
 
