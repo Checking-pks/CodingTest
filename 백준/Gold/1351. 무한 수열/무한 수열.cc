@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-	long long n, p, q, result = 0;
+	long long n, p, q;
 	cin >> n >> p >> q;
 	
 	list<long long> bucket(1, n);
@@ -38,4 +38,3 @@ int main() {
 
 	cout << numList[n];
 }
-
