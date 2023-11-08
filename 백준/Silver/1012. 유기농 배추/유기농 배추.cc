@@ -1,59 +1,45 @@
 #include <iostream>
+#include <vector>
+
 using namespace std;
 
-bool field[52][52] = {false,};
-
-void find_island(int x, int y) {
-    field[x][y] = false;
-
-    if (field[x][y-1]) {
-        find_island(x, y-1);
-    }
-    
-    if (field[x][y+1]) {
-        find_island(x, y+1);
-    }
-    
-    if (field[x-1][y]) {
-        find_island(x-1, y);
-    }
-    
-    if (field[x+1][y]) {
-        find_island(x+1, y);
-    }
+void dfs(vector<vector<bool>> & field, pair<int, int> pos) {
+	if (field[pos.first][pos.second] == 0) return;
+	
+	field[pos.first][pos.second] = false;
+	
+	dfs(field, {pos.first+1, pos.second});
+	dfs(field, {pos.first-1, pos.second});
+	dfs(field, {pos.first, pos.second+1});
+	dfs(field, {pos.first, pos.second-1});
 }
 
 int main() {
-    
-    cin.tie(NULL);
-    ios_base::sync_with_stdio(false);
-    
-    int testcase;
-    cin >> testcase;
-    
-    for (int i=0; i<testcase; i++) {
-        int m, n, cabbage, result=0;
-        cin >> m >> n >> cabbage;
-        
-        for (int j=0; j<cabbage; j++) {
-            int x, y;
-            cin >> x >> y;
-            
-            x++;
-            y++;
-            
-            field[x][y] = true;
-        }
-        
-        for (int j=0; j<52; j++) {
-            for (int k=0; k<52; k++) {
-                if (field[j][k]) {
-                    result++;
-                    find_island(j, k);
-                }
-            }
-        }
-        
-        cout << result << "\n";
-    }
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL); cout.tie(NULL);
+	
+	int testcase;
+	cin >> testcase;
+
+	while (testcase--) {
+		int m, n, k, result=0;
+		cin >> m >> n >> k;
+		
+		vector<vector<bool>> field(m+2, vector<bool>(n+2, false));
+		for (int i=0, x, y; i<k; i++) {
+			cin >> x >> y;
+			field[++x][++y] = 1;
+		}
+
+		for (int i=1; i<=m; i++) {
+			for (int j=1; j<=n; j++) {
+				if (field[i][j]) {
+					result++;
+					dfs(field, {i, j});
+				}
+			}
+		}
+
+		cout << result << "\n";
+	}
 }
