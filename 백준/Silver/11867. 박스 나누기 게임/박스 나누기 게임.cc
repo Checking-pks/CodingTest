@@ -1,9 +1,2 @@
-#include <iostream>
-
-using namespace std;
-
-int main() {
-	int n, m;
-	cin >> n >> m;
-	cout << ((n & 1) && (m & 1) ? 'B' : 'A');
-}
+#include<iostream>
+int main(){int n,m;std::cin>>n>>m;std::cout<<(n&m&1?'B':'A');}
