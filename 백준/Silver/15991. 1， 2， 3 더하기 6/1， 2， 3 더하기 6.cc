@@ -4,7 +4,6 @@
 using namespace std;
 
 unordered_map<int, pair<long long, long long>> numList;
-
 const long long DIVISION = 1000000009;
 
 pair<long long, long long> dp(int n) {
@@ -13,16 +12,12 @@ pair<long long, long long> dp(int n) {
 
 	pair<long long, long long> now;
 
-	if (n&1) 
-		now = {0, dp(n-1).first + dp(n-1).second};
-	else
-		now = {dp(n-2).first + dp(n-2).second + dp(n-4).second, dp(n-2).first};
+	if (n&1) now = {0, dp(n-1).first + dp(n-1).second};
+	else     now = {dp(n-2).first + dp(n-2).second + dp(n-4).second, dp(n-2).first};
 
 	now.first  %= DIVISION;
 	now.second %= DIVISION;
-	
 	numList[n] = now;
-
 	return now;
 }
 
