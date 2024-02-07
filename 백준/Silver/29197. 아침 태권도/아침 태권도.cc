@@ -1,72 +1,33 @@
 #include <iostream>
 #include <vector>
+#include <unordered_set>
 
 using namespace std;
 
 int main() {
-	pair<int, int> center = {10000, 10000}, xAxis = {0, 0}, yAxis = {0, 0};
-	vector<vector<bool>> field(20001, vector<bool>(20001));
-	
-	int N, result=0;
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+
+	int N;
 	cin >> N;
-	for (int i=0, x, y; i<N; i++) {
+
+	unordered_set<double> nList1, nList2;
+	pair<bool, bool> xAxis, yAxis;
+
+	for (int i=0; i<N; i++) {
+		double x, y;
 		cin >> x >> y;
-		
-		if (field[center.first + x][center.second + y])
-			continue;
 
-		if (x == 0) {
-			if (y > 0) {
-				if (!yAxis.second) {
-					yAxis.second = y;
-					result++;
-				} else if (y < yAxis.second) {
-					yAxis.second = y;
-				}
-			} else {
-				if (!yAxis.first) {
-					yAxis.first = y;
-					result++;
-				} else if (y > yAxis.first) {
-					yAxis.first = y;
-				}
-			}
-
-			continue;
-		}
-
-		if (y == 0) {
-			if (x > 0) {
-				if (!xAxis.second) {
-					xAxis.second = x;
-					result++;
-				} else if (x < xAxis.second) {
-					xAxis.second = x;
-				}
-			} else {
-				if (!xAxis.first) {
-					xAxis.first = x;
-					result++;
-				} else if (x > xAxis.first) {
-					xAxis.first = x;
-				}
-			}
-
-			continue;
-		}
-		
-		result++;
-
-		for (int j=2; true; j++) {
-			if (-10000 > x*j || x*j > 10000) break;
-			if (-10000 > y*j || y*j > 10000) break;
-			if (field[center.first + x * j][center.second + y * j]) {
-				result--;
-				break;
-			}
-			field[center.first + x * j][center.second + y * j] = true;
-		}
+		if (x==0 && y < 0) yAxis.first = true;
+		else if (x==0 && y > 0) yAxis.second = true;
+		else if (y==0 && x < 0) xAxis.first = true;
+		else if (y==0 && x > 0) xAxis.second = true;
+		else if (y > 0) nList1.insert(x/y);
+		else nList2.insert(x/y);
 	}
 
+	int result = xAxis.first + xAxis.second + yAxis.first + yAxis.second;
+	result += nList1.size() + nList2.size();
+	
 	cout << result;
 }
