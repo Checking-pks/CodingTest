@@ -8,7 +8,7 @@ long long gcd(long long a, long long b) {
 	return gcd(b, a%b);
 }
 
-void sum(vector<long long> A, vector<long long> B) {
+vector<long long> sum(vector<long long> A, vector<long long> B) {
 	long long g = gcd(A[0], B[0]);
 	vector<long long> newA = A, newB = B;
 	
@@ -20,24 +20,10 @@ void sum(vector<long long> A, vector<long long> B) {
 			newA[i] += newB[i];
 	}
 
-	g = gcd(newA[0], gcd(newA[1], newA[2]));
-
-	for (long long i=0; i<3; i++)
-		newA[i] /= g;
-
-	if (newA[0] < 0) 
-		for (long long i=0; i<3; i++)
-			newA[i] *= -1;
-
-	if (newA[2] == 0) newA[3] = 0;
-	if (newA[3] == 0) newA[2] = 0;
-
-	for (long long i=0; i<4; i++) 
-		cout << newA[i] << " ";
-	cout << "\n";
+	return newA;
 }
 
-void dif(vector<long long> A, vector<long long> B) {
+vector<long long> dif(vector<long long> A, vector<long long> B) {
 	long long g = gcd(A[0], B[0]);
 	vector<long long> newA = A, newB = B;
 
@@ -49,24 +35,10 @@ void dif(vector<long long> A, vector<long long> B) {
 			newA[i] -= newB[i];
 	}
 
-	g = gcd(newA[0], gcd(newA[1], newA[2]));
-
-	for (long long i=0; i<3; i++)
-		newA[i] /= g;
-
-	if (newA[0] < 0) 
-		for (long long i=0; i<3; i++)
-			newA[i] *= -1;
-
-	if (newA[2] == 0) newA[3] = 0;
-	if (newA[3] == 0) newA[2] = 0;
-
-	for (long long i=0; i<4; i++) 
-		cout << newA[i] << " ";
-	cout << "\n";
+	return newA;
 }
 
-void mul(vector<long long> A, vector<long long> B) {
+vector<long long> mul(vector<long long> A, vector<long long> B) {
 	vector<long long> newA = A;
 
 	newA[0] *= B[0];
@@ -79,24 +51,10 @@ void mul(vector<long long> A, vector<long long> B) {
 		A[2] * B[1]
 	);
 
-	long long g = gcd(newA[0], gcd(newA[1], newA[2]));
-
-	for (long long i=0; i<3; i++)
-		newA[i] /= g;
-
-	if (newA[0] < 0) 
-		for (long long i=0; i<3; i++)
-			newA[i] *= -1;
-
-	if (newA[2] == 0) newA[3] = 0;
-	if (newA[3] == 0) newA[2] = 0;
-
-	for (long long i=0; i<4; i++)
-		cout << newA[i] << " ";
-	cout << "\n";
+	return newA;
 }
 
-void div(vector<long long> A, vector<long long> B) {
+vector<long long> div(vector<long long> A, vector<long long> B) {
 	vector<long long> newA = A, newB = B;
 	newB[2] *= -1;
 
@@ -113,20 +71,24 @@ void div(vector<long long> A, vector<long long> B) {
 		A[2] * newB[1]
 	);
 
-	long long g = gcd(newA[0], gcd(newA[1], newA[2]));
+	return newA;
+}
+
+void output(vector<long long> A) {
+	long long g = gcd(A[0], gcd(A[1], A[2]));
 
 	for (long long i=0; i<3; i++)
-		newA[i] /= g;
+		A[i] /= g;
 
-	if (newA[0] < 0) 
+	if (A[0] < 0) 
 		for (long long i=0; i<3; i++)
-			newA[i] *= -1;
+			A[i] *= -1;
 
-	if (newA[2] == 0) newA[3] = 0;
-	if (newA[3] == 0) newA[2] = 0;
-	
+	if (A[2] == 0) A[3] = 0;
+	if (A[3] == 0) A[2] = 0;
+
 	for (long long i=0; i<4; i++)
-		cout << newA[i] << " ";
+		cout << A[i] << " ";
 	cout << "\n";
 }
 
@@ -136,8 +98,8 @@ int main() {
 	cin >> A[0] >> A[1] >> A[2] >> A[3];
 	cin >> B[0] >> B[1] >> B[2] >> B[3];
 
-	sum(A, B);
-	dif(A, B);
-	mul(A, B);
-	div(A, B);
+	output(sum(A, B));
+	output(dif(A, B));
+	output(mul(A, B));
+	output(div(A, B));
 }
