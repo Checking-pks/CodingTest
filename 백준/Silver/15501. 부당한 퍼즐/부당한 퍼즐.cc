@@ -4,7 +4,9 @@
 
 using namespace std;
 
-bool check(list<int> a, list<int> b) {
+list<int> a, b;
+
+bool check() {
 	for (int i=0; i<a.size(); i++) {
 		b.push_back(b.front());
 		b.pop_front();
@@ -20,30 +22,25 @@ int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0); cout.tie(0);
 	
-	int n;
+	int n, now;
 	cin >> n;
 
-	list<int> before, after;
-
-	for (int i=0, now; i<n; i++) {
+	for (int i=0; i<n; i++) {
 		cin >> now;
-		before.push_back(now);
+		a.push_back(now);
 	}
 	
-	for (int i=0, now; i<n; i++) {
+	for (int i=0; i<n; i++) {
 		cin >> now;
-		after.push_back(now);
+		b.push_back(now);
 	}
 
-	if (check(before, after)) {
+	if (check()) {
 		cout << "good puzzle";
 		return 0;
 	}
 	
-	reverse(after.begin(), after.end());
+	reverse(b.begin(), b.end());
 
-	if (check(before, after))
-		cout << "good puzzle";
-	else
-		cout << "bad puzzle";
+	cout << (check() ? "good" : "bad") << " puzzle";
 }
