@@ -7,16 +7,10 @@ int len;
 vector<int> alphabet(26);
 
 bool isSame(vector<int> &arr, bool needChange) {
-	bool isChange = false;
 	int count = 0;
-	
-	for (int i=0; i<26; i++) {
-		int now = alphabet[i] - arr[i];
-		count += abs(now);
 
-		if (now > 0)
-			isChange = true;
-	}
+	for (int i = 0; i < 26; i++)
+		count += abs(alphabet[i] - arr[i]);
 
 	if (count == 2)
 		return true;
@@ -32,19 +26,19 @@ bool check(string &after) {
 		return false;
 
 	bool needChange = (len == after.length());
-	
+
 	vector<int> nowAlphabet(26);
-	for (int i=0; i<len; i++)
+	for (int i = 0; i < len; i++)
 		nowAlphabet[after[i] - 'a']++;
 
-	if (isSame(nowAlphabet, needChange)) 
+	if (isSame(nowAlphabet, needChange))
 		return true;
-	
+
 	for (int i = len; i < after.length(); i++) {
 		nowAlphabet[after[i] - 'a']++;
 		nowAlphabet[after[i - len] - 'a']--;
 
-		if (isSame(nowAlphabet, needChange)) 
+		if (isSame(nowAlphabet, needChange))
 			return true;
 	}
 
@@ -63,8 +57,8 @@ int main() {
 	len = S.length();
 	for (char c : S)
 		alphabet[c - 'a']++;
-	
-	for (int i=0; i<N; i++) {
+
+	for (int i = 0; i < N; i++) {
 		string now;
 		cin >> now;
 
