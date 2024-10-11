@@ -24,8 +24,5 @@ int solve(int mul) {
 int main()
 {
     cin >> S;
-    
-    S.push_back(')');
-    
     cout << solve(1);
 }
