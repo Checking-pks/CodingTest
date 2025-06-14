@@ -1,20 +1,23 @@
 #include <iostream>
+#include <string>
+
 using namespace std;
 
 int main() {
-    cin.tie(NULL);
-    ios_base::sync_with_stdio(false);
+	int times;
+    cin >> times;
     
-    int t,h,w,n,num;
-    cin >> t;
-    for (int i=0; i<t; i++) {
+    for (int i=0; i<times; i++) {
+    	int h, w, n;
         cin >> h >> w >> n;
-        if (n%h!=0) {
-            num=(n%h*100)+int(n/h)+1;
-            cout<<num<<"\n";
-        } else {
-            num=h*100+int(n/h);
-            cout<<num<<"\n";
-        }
+
+        string floor, room;
+
+        room = to_string((n - 1) / h + 1);
+        floor = to_string((n % h == 0) ? h : n % h) + ((room.length() != 2) ? "0" : "");
+
+        cout << floor << room << "\n";
     }
+	
+	return 0;
 }
