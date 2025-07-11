@@ -1,4 +1,4 @@
-# [Bronze IV] 17배 - 5893 
+# [Bronze III] 17배 - 5893 
 
 [문제 링크](https://www.acmicpc.net/problem/5893) 
 
@@ -8,7 +8,11 @@
 
 ### 분류
 
-임의 정밀도 / 큰 수 연산(arbitrary_precision), 구현(implementation), 수학(math)
+수학, 구현, 임의 정밀도 / 큰 수 연산
+
+### 제출 일자
+
+2022년 8월 19일 02:15:58
 
 ### 문제 설명
 
