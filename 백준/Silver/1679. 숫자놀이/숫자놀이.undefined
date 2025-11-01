@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+
+using namespace std;
+
+int main()
+{
+    int N, K;
+    cin >> N;
+    
+    int maxNum = 0;
+    vector<int> nList(N);
+    for (int i = 0; i < N; i++)
+    {
+        cin >> nList[i];
+        maxNum = max(maxNum, nList[i]);
+    }
+    
+    cin >> K;
+    
+    vector<bool> visit(maxNum * K + 1);
+    
+    queue<pair<int, int>> bucket;
+    bucket.push({0, 0});
+    
+    while (bucket.size())
+    {
+        int now = bucket.front().first;
+        int cnt = bucket.front().second;
+        bucket.pop();
+        
+        if (cnt == K) continue;
+        
+        for (int i = 0; i < nList.size(); i++)
+        {
+            int next = now + nList[i];
+            
+            if (visit[next]) continue;
+            visit[next] = true;
+            
+            bucket.push({next, cnt + 1});
+        }
+    }
+    
+    for (int i = 1; true; i++)
+    {
+        if (!visit[i])
+        {
+            cout << (i & 1 ? "jjaksoon" : "holsoon") << " win at " << i;
+            break;
+        }
+    }
+}
